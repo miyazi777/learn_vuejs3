@@ -21,7 +21,7 @@
 <template>
   <div id="app">
     <nav-link></nav-link>
-    <router-view class="contents" :memos="memos" @add="add" @remove="remove"></router-view>
+    <router-view class="contents" :memos="memos" @add="add" @remove="remove" @update="update"></router-view>
   </div>
 </template>
 
@@ -67,6 +67,13 @@
           return memo.id === id
         })
         this.memos.splice(index,1)
+      },
+      update(data) {
+        const id = parseInt(data.id, 10)
+        const index = this.memos.findIndex((memo) => {
+          return memo.id === id
+        })
+        this.memos.splice(index, 1, data)
       }
     },
     components: {
