@@ -21,61 +21,15 @@
 <template>
   <div id="app">
     <nav-link></nav-link>
-    <router-view class="contents" :memos="memos" @add="add" @remove="remove" @update="update"></router-view>
+    <router-view class="contents"></router-view>
   </div>
 </template>
 
 <script>
   import NavLink from './components/NavLink'
-  import EditorView from './components/EditorView'
-  import ListView from './components/ListView'
 
   export default {
     name: 'app',
-    data() {
-      return {
-        memos: [
-          {
-            id: 1,
-            text: 'test',
-            date: '2017-10-23',
-            tags: ['tag1', 'tag2']
-          },
-          {
-            id: 2,
-            text: 'test2',
-            date: '2017-11-23',
-            tags: ['tag1', 'tag2']
-          }
-        ]
-      }
-    },
-    computed: {
-      nextId() {
-        return this.memos.reduce((id, memo) => {
-          return id < memo.id ? memo.id : id
-        }, 0) + 1
-      }
-    },
-    methods: {
-      add(newMemo) {
-        newMemo.id = this.nextId
-        this.memos.push(newMemo)
-      },
-      remove(id) {
-        const index = this.memos.findIndex((memo) => {
-          return memo.id === id
-        })
-        this.memos.splice(index,1)
-      },
-      update(data) {
-        const id = parseInt(data.id, 10)
-        const index = this.memos.findIndex((memo) => {
-          return memo.id === id
-        })
-        this.memos.splice(index, 1, data)
-      }
-    },
     components: {
       NavLink
     }
