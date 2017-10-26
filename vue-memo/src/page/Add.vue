@@ -6,12 +6,11 @@
 
 <script>
   import EditorView from '../components/EditorView'
-  import store from '../store'
 
   export default {
     methods: {
       add(data) {
-        store.actions.addMemo(data)
+        this.$store.commit('addMemo', data)
         this.$router.push({name: 'items'})
       }
     },
